@@ -1,3 +1,7 @@
+<?php
+	require '/steamauth/steamauth.php';
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +10,18 @@
     </head>
 
     <body>
-    	<?php include('/backend/get_whitelist.php'); ?>
+    	<?php
+			if(!isset($_SESSION['steamid'])) {
+
+			    loginbutton(); //login button
+
+			}  else {
+
+			    include ('/steamauth/userInfo.php'); //To access the $steamprofile array
+			    //Protected content
+
+			    logoutbutton(); //Logout Button
+			}
+		?>
     </body>
 </html>

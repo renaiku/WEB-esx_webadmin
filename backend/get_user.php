@@ -2,22 +2,33 @@
 
 	include('pdo.php');
 
-	$_GET['identifier']
+	$user = $db->prepare('SELECT * FROM whitelist w INNER JOIN users u ON w.identifier = :identifier WHERE u.identifier = :identifier');
+	$user->execute(array('identifier' => $_GET['identifier']));
 
-	$whitelist = $db->query('SELECT * FROM whitelist INNER JOIN users ON whitelist.identifier = users.identifier');
+	$result = $user->fetch();
 
-	// nom_rp identifier last_connexion ban_reason ban_until
+	$arr = array(
+		'identifier' 		=> $result['identifier'],
+		'firstname' 		=> $result['firstname'],
+		'lastname' 			=> $result['lastname'],
+		'last_connexion' 	=> $result['last_connexion'],
+		'ban_reason' 		=> $result['ban_reason'],
+		'ban_until' 		=> $result['ban_until'],
+		'license' 			=> $result['license'],
+		'group' 			=> $result['group'],
+		'permission_level' 	=> $result['permission_level'],
+		'money' 			=> $result['money'],
+		'steam_name' 		=> $result['name'],
+		'job' 				=> $result['job'],
+		'job_grade' 		=> $result['job_grade'],
+		'loadout' 			=> $result['loadout'],
+		'position' 			=> $result['position'],
+		'phone_number' 		=> $result['phone_number'],
+		'bank' 				=> $result['bank'],
+		'status' 			=> $result['status']
+	);
 
-	while ($result = $whitelist->fetch())
-	{
-	    echo $result['nom_rp'] . '<br />';
-	    echo $result['identifier'] . '<br />';
-	    echo $result['last_connexion'] . '<br />';
-	    echo $result['ban_reason'] . '<br />';
-	    echo $result['ban_until'] . '<br />';
-	    echo $result['group'] . '<br />';
-	    echo '<hr>';
-	}
+	echo json_encode($arr);
 
-	$whitelist->closeCursor();
+	$user->closeCursor();
 ?>
