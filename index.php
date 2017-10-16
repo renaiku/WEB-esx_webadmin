@@ -6,6 +6,6 @@
     </head>
 
     <body>
-    	<?php include('get_whitelist.php'); ?>
+    	<?php include('/backend/get_whitelist.php'); ?>
     </body>
 </html>
