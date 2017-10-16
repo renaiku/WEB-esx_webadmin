@@ -1,5 +1,20 @@
 <?php
 	require_once 'steamauth/steamauth.php';
+
+	if(isset($_GET['p']) && !empty($_GET['p'])) {
+
+		if(file_exists('pages/'.$_GET['p'].'.php')) {
+			$page = 'pages/'.$_GET['p'].'.php';
+		}else{
+			$page = 'pages/home.php';
+		}
+
+	}else{
+
+		$page = 'pages/home.php';
+
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,19 +31,11 @@
 
 		    <!-- Content Wrapper. Contains page content -->
 		    <div class="content-wrapper">
-	    	<?php
-				if(!isset($_SESSION['steamid'])) {
+		    	<?php
 
-				    loginbutton(); //login button
+		    		include_once($page);
 
-				}  else {
-
-				    include_once ('/steamauth/userInfo.php'); //To access the $steamprofile array
-				    //Protected content
-
-				    logoutbutton(); //Logout Button
-				}
-			?>
+		    	?>
 			</div>
 		</div>
 	    <?php
