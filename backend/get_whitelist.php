@@ -8,7 +8,8 @@
 
 	while ($result = $whitelist->fetch())
 	{
-	    echo $result['nom_rp'] . '<br />';
+	    echo $result['firstname'] . '<br />';
+	    echo $result['lastname'] . '<br />';
 	    echo $result['identifier'] . '<br />';
 	    echo $result['last_connexion'] . '<br />';
 	    echo $result['ban_reason'] . '<br />';
