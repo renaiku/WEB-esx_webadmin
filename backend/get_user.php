@@ -1,5 +1,5 @@
 <?php
-	require '../steamauth/steamauth.php';
+	require('../steamauth/steamauth.php');
 
 	function bc_base_convert($value,$quellformat,$zielformat)
     {
