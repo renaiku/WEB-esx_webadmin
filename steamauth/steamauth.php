@@ -32,7 +32,7 @@ if (isset($_GET['login'])){
 				preg_match($ptn, $id, $matches);
 				
 			    if(USE_WHITELIST) {
-			    	include_once('pdo.php');
+			    	include_once('backend/pdo.php');
 			    	$hexid = 'steam:'.bc_base_convert($_SESSION['steamid'], 10, 16 );
 					$user = $db->prepare('SELECT * FROM whitelist WHERE identifier = :identifier');
 					$user->execute(array('identifier' => $hexid));
@@ -44,7 +44,7 @@ if (isset($_GET['login'])){
 			    }else{
 					$_SESSION['steamid'] = $matches[1];
 			    }
-			    
+
 				if (!headers_sent()) {
 					header('Location: '.$steamauth['loginpage']);
 					exit;
