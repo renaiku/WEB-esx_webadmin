@@ -15,6 +15,12 @@
 
 	}
 
+	if(isset($_SESSION['steamid'])) {
+		include_once('backend/get_user.php');
+
+		$user = get_user();
+	}
+
 ?>
 
 <!DOCTYPE html>

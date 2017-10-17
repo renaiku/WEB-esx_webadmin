@@ -1,14 +1,14 @@
 <?php
 
-	include('../config/config.php');
+	include_once('config/config.php');
 
 	try
 	{
-		$db = new PDO('mysql:host='.$db_adress.';dbname='.$db_name.';charset=utf8', $db_user, $db_password,
+		$db = new PDO('mysql:host='.DB_ADDRESS.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASSWORD,
 		array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 	}
 	catch (Exception $e)
 	{
-		die('Erreur : ' . $e->getMessage());
+		die('Error : ' . $e->getMessage());
 	}
 ?>

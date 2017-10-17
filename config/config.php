@@ -1,12 +1,13 @@
 <?php
 
 	// DATABASE CONFIG
-	$db_adress 		= 'localhost';
-	$db_name 		= 'essentialmode';
-	$db_user 		= 'root';
-	$db_password 	= '';
+	define('DB_ADDRESS',	'localhost');
+	define('DB_NAME',		'essentialmode');
+	define('DB_USER',		'root');
+	define('DB_PASSWORD',	'');
 
-	// PANEL CONFIG
-	$use_steam_connect = true;
+	define('DOMAIN_NAME',	'localhost/git/esx_webadmin/');
+	define('STEAM_API_KEY',	'97C1C2B4592752472E52E35C4CA8311E');
+	define('USE_WHITELIST',	false);
 
 ?>
