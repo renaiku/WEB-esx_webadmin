@@ -31,7 +31,20 @@ if (isset($_GET['login'])){
 				$ptn = "/^http:\/\/steamcommunity\.com\/openid\/id\/(7[0-9]{15,25}+)$/";
 				preg_match($ptn, $id, $matches);
 				
-				$_SESSION['steamid'] = $matches[1];
+			    if(USE_WHITELIST) {
+			    	include_once('pdo.php');
+			    	$hexid = 'steam:'.bc_base_convert($_SESSION['steamid'], 10, 16 );
+					$user = $db->prepare('SELECT * FROM whitelist WHERE identifier = :identifier');
+					$user->execute(array('identifier' => $hexid));
+					$result = $user->fetch();
+					$user->closeCursor();
+					if($result > 0) {
+						$_SESSION['steamid'] = $matches[1];
+					}
+			    }else{
+					$_SESSION['steamid'] = $matches[1];
+			    }
+			    
 				if (!headers_sent()) {
 					header('Location: '.$steamauth['loginpage']);
 					exit;
