@@ -47,7 +47,7 @@
 	    $hexid = 'steam:'.bc_base_convert($_SESSION['steamid'], 10, 16 );
 
 	    if(USE_WHITELIST) {
-			$user = $db->prepare('SELECT * FROM whitelist w INNER JOIN users u ON w.identifier = :identifier WHERE u.identifier = :identifier');
+			$user = $db->prepare('SELECT * FROM whitelist w RIGHT JOIN users u ON w.identifier = :identifier WHERE u.identifier = :identifier');
 	    }else{
 	    	$user = $db->prepare('SELECT * FROM users WHERE identifier = :identifier');
 	    }
