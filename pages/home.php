@@ -14,18 +14,6 @@
     <!-- Main content -->
 <section class="content">
 	<div class="row">
-	<?php
-		if(!isset($_SESSION['steamid'])) {
-
-		    loginbutton('rectangle'); //login button
-
-		}  else {
-
-		    include_once ('steamauth/userInfo.php'); //To access the $steamprofile array
-		    //Protected content
-
-		    logoutbutton(); //Logout Button
-		}
-	?>
+		Here will be content
 	</div>
 </section>

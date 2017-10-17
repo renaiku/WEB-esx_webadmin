@@ -2,9 +2,9 @@
   <!-- Logo -->
   <a href="index2.html" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>A</b>LT</span>
+    <span class="logo-mini"><b>E</b>WA</span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Admin</b>LTE</span>
+    <span class="logo-lg"><b>ESX</b>WebAdmin</span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">
@@ -14,6 +14,13 @@
     </a>
 
     <div class="navbar-custom-menu">
+        <?php
+          if(!isset($_SESSION['steamid'])) {
+            echo '<div style="padding: 7px 15px;">';
+              loginbutton('rectangle'); //login button
+            echo '</div>';
+          } else {
+        ?>
       <ul class="nav navbar-nav">
         <!-- Messages: style can be found in dropdown.less-->
         <li class="dropdown messages-menu">
@@ -215,16 +222,16 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="frontend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-            <span class="hidden-xs">Alexander Pierce</span>
+            <img src="<?=$_SESSION['steam_avatarmedium']?>" class="user-image" alt="User Image">
+            <span class="hidden-xs"><?=$user['name']?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="frontend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+              <img src="<?=$_SESSION['steam_avatarfull']?>" class="img-circle" alt="User Image">
 
               <p>
-                Alexander Pierce - Web Developer
+                <?=$user['name']?> - <?=$user['firstname'].' '.$user['lastname']?>
                 <small>Member since Nov. 2012</small>
               </p>
             </li>
@@ -249,7 +256,9 @@
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                <?php
+                  logoutbutton(); //Logout Button
+                ?>
               </div>
             </li>
           </ul>
@@ -259,10 +268,15 @@
           <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
         </li>
       </ul>
+        <?php
+          }
+        ?>
     </div>
   </nav>
 </header>
 
 <?php
+if(isset($_SESSION['steamid'])) {
   include('/sidebar.inc.php');
+}
 ?>

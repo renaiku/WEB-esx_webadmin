@@ -18,7 +18,7 @@
 	if(isset($_SESSION['steamid'])) {
 		include_once('backend/get_user.php');
 
-		$user = get_user();
+		$user = json_decode(get_user(), true);
 	}
 
 ?>
