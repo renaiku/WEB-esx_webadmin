@@ -34,7 +34,7 @@ if (isset($_GET['login'])){
 			    if(USE_WHITELIST) {
 			    	include_once('backend/pdo.php');
 			    	include_once('backend/get_user.php');
-			    	$hexid = 'steam:'.bc_base_convert($_SESSION['steamid'], 10, 16 );
+			    	$hexid = 'steam:'.bc_base_convert($matches[1], 10, 16 );
 					$user = $db->prepare('SELECT * FROM whitelist WHERE identifier = :identifier');
 					$user->execute(array('identifier' => $hexid));
 					$result = $user->fetch();

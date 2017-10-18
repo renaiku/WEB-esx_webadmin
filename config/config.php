@@ -8,6 +8,6 @@
 
 	define('DOMAIN_NAME',	'localhost/git/esx_webadmin/');
 	define('STEAM_API_KEY',	'97C1C2B4592752472E52E35C4CA8311E');
-	define('USE_WHITELIST',	false);
+	define('USE_WHITELIST',	true);
 
 ?>
