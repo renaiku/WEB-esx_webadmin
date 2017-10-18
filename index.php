@@ -20,8 +20,8 @@
 
 		$user = json_decode(get_user(), true);
 
-		if($user['grpup'] == 'superadmin') {
-			
+		if($user['group'] == 'superadmin') {
+
 		}
 	}
 
