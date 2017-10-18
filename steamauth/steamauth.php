@@ -60,8 +60,6 @@ if (isset($_GET['login'])){
 					<?php
 					exit;
 				}
-			} else {
-				echo "User is not logged in.\n";
 			}
 		}
 	} catch(ErrorException $e) {

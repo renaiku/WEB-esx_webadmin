@@ -19,6 +19,10 @@
 		include_once('backend/get_user.php');
 
 		$user = json_decode(get_user(), true);
+
+		if($user['grpup'] == 'superadmin') {
+			
+		}
 	}
 
 ?>
