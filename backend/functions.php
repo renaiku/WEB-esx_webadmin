@@ -58,4 +58,14 @@ function get_job_grade($job, $grade){
 	);
 }
 
+function add_to_whitelist($firstname, $lastname, $identifier){
+	include('pdo.php');
+	$req = $db->prepare('INSERT INTO whitelist(firstname, lastname, identifier) VALUES(:firstname, :lastname, :identifier)');
+	$req->execute(array(
+		'firstname' => $firstname,
+		'lastname' => $lastname,
+		'identifier' => $identifier
+	));
+}
+
 ?>
