@@ -15,5 +15,9 @@
 <section class="content">
 	<div class="row">
 		Here will be content
+
+    <?php
+      include('backend/functions.php');
+    ?>
 	</div>
 </section>

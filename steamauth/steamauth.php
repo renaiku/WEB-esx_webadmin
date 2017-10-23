@@ -14,6 +14,8 @@ function loginbutton($buttonstyle = "square") {
 	echo $button;
 }
 
+
+
 if (isset($_GET['login'])){
 	require 'openid.php';
 	try {
@@ -47,7 +49,7 @@ if (isset($_GET['login'])){
 					$_SESSION['steamid'] = $matches[1];
 			    }
 
-			    $_SESSION['steamidhex'] = $hexid;
+      			$_SESSION['steamidhex'] = $hexid;
 
 				if (!headers_sent()) {
 					header('Location: '.$steamauth['loginpage']);

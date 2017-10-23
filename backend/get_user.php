@@ -1,8 +1,8 @@
 <?php
 	require_once('steamauth/steamauth.php');
 	require_once('config/config.php');
-
-	function bc_base_convert($value,$quellformat,$zielformat)
+ 
+function bc_base_convert($value,$quellformat,$zielformat)
     {
       $vorrat = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
       if(max($quellformat,$zielformat) > strlen($vorrat))
@@ -45,18 +45,19 @@
 	    include_once('pdo.php');
 
 	    $hexid = 'steam:'.bc_base_convert($_SESSION['steamid'], 10, 16 );
+      $_SESSION['steamidhex'] = $hexid;
 
 	    if(USE_WHITELIST) {
-			$user = $db->prepare('SELECT * FROM whitelist w RIGHT JOIN users u ON w.identifier = :identifier WHERE u.identifier = :identifier');
+        $user = $db->prepare('SELECT * FROM whitelist w RIGHT JOIN users u ON w.identifier = :identifier WHERE u.identifier = :identifier');
 	    }else{
 	    	$user = $db->prepare('SELECT * FROM users WHERE identifier = :identifier');
 	    }
-		$user->execute(array('identifier' => $hexid));
+		  $user->execute(array('identifier' => $hexid));
 
-		$result = $user->fetch();
+		  $result = $user->fetch();
 
-		$user->closeCursor();
+		  $user->closeCursor();
 
-		return json_encode($result);
+		  return json_encode($result);
     }
 ?>
