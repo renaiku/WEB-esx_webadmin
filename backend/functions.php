@@ -20,6 +20,15 @@ function count_users() {
 	return $result[0];
 }
 
+// returns whitelist
+function get_whitelist() {
+	include('pdo.php');
+	$bdd = $db->query('SELECT * FROM whitelist');
+	$result = $bdd->fetch();
+	$bdd->closeCursor();
+	return $result;
+}
+
 // $user should be steamhex64
 function get_user_info($user, $field){
 	include('pdo.php');
