@@ -277,6 +277,6 @@
 
 <?php
 if(isset($_SESSION['steamid'])) {
-  include('/sidebar.inc.php');
+  include('sidebar.inc.php');
 }
 ?>
