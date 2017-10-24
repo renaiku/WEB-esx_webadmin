@@ -68,7 +68,7 @@ function count_users() {
 	$count = $db->query('SELECT COUNT(`identifier`) FROM users');
 	$result = $count->fetch();
 	$count->closeCursor();
-	return $result[0];
+	return json_encode($result[0]);
 }
 
 // returns whitelist
@@ -77,7 +77,7 @@ function get_whitelist() {
 	$bdd = $db->query('SELECT * FROM whitelist');
 	$result = $bdd->fetch();
 	$bdd->closeCursor();
-	return $result;
+	return json_encode($result);
 }
 
 // $user should be steamhex64
@@ -87,7 +87,7 @@ function get_user_info($user, $field){
 	$userData->execute(array('identifier' => $user));
 	$result = $userData->fetch();
 	$userData->closeCursor();
-	return $result[$field];
+	return json_encode($result[$field]);
 }
 
 function get_job($job){
@@ -96,11 +96,11 @@ function get_job($job){
 	$userData->execute(array('job_name' => $job));
 	$result = $userData->fetch();
 	$userData->closeCursor();
-	return array(
+	return json_encode(array(
 		'name' => $result['name'],
 		'label' => $result['label'],
 		'whitelisted' => $result['whitelisted']
-	);
+	));
 }
 
 function get_job_grade($job, $grade){
@@ -109,13 +109,13 @@ function get_job_grade($job, $grade){
 	$userData->execute(array('job_name' => $job, 'grade' => $grade));
 	$result = $userData->fetch();
 	$userData->closeCursor();
-	return array(
+	return json_encode(array(
 		'job_name' => $result['job_name'],
 		'grade' => $result['grade'],
 		'name' => $result['name'],
 		'label' => $result['label'],
 		'salary' => $result['salary']
-	);
+	));
 }
 
 function add_to_whitelist($firstname, $lastname, $identifier){
