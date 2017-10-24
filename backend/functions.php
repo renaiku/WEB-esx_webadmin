@@ -1,5 +1,44 @@
 <?php
-include_once('config/config.php');
+
+if (isset($_GET['return'])) {
+	include_once('../config/config.php');
+	$result = NULL;
+
+	switch ($_GET['return']) {
+    case 'get_user':
+        $result = get_user();
+        break;
+    case 'count_users':
+        $result = count_users();
+        break;
+    case 'get_whitelist':
+        $result = get_whitelist();
+        break;
+    case 'get_user_info':
+        $result = get_user_info($_GET['user'], $_GET['field']);
+        break;
+    case 'get_job':
+        $result = get_job($_GET['job']);
+        break;
+   	case 'get_job_grade':
+        $result = get_job_grade($_GET['job'], $_GET['grade']);
+        break;
+    case 'add_to_whitelist':
+        add_to_whitelist(htmlspecialchars($_GET['firstname']), htmlspecialchars($_GET['lastname']), htmlspecialchars($_GET['identifier']));
+        $result = NULL;
+        break;
+	}
+    
+    if ($result != NULL) {
+        return $result;   
+    } else {
+    	return "Function doesn't exist or is not in the switch case: ".$_GET['return'];
+    }
+
+} else {
+	include_once('config/config.php');
+}
+
 
 if(isset($_SESSION['steamid']) and DEBUG) {
 	echo '<br /><br />[USERS] '. count_users() . '<br />';
@@ -75,7 +114,7 @@ function count_users() {
 function get_whitelist() {
 	include('pdo.php');
 	$bdd = $db->query('SELECT * FROM whitelist');
-	$result = $bdd->fetch();
+	$result = $bdd->fetchall();
 	$bdd->closeCursor();
 	return json_encode($result);
 }

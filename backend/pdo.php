@@ -1,6 +1,9 @@
 <?php
 
-	include_once('config/config.php');
+	if (isset($_GET['return'])) {
+		include_once('../config/config.php');
+	} else {		
+		include_once('config/config.php');	}
 
 	try
 	{
