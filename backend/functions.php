@@ -98,7 +98,7 @@ function get_user() {
 	$u->execute(array('identifier' => $_SESSION['steamidhex']));
 	$result = $u->fetch();
 	$u->closeCursor();
-	return json_encode($result);
+	echo json_encode($result);
 }
 
 // returns the amount of players created in the users table
@@ -107,7 +107,7 @@ function count_users() {
 	$count = $db->query('SELECT COUNT(`identifier`) FROM users');
 	$result = $count->fetch();
 	$count->closeCursor();
-	return json_encode($result[0]);
+	echo json_encode($result[0]);
 }
 
 // returns whitelist
@@ -116,7 +116,7 @@ function get_whitelist() {
 	$bdd = $db->query('SELECT * FROM whitelist');
 	$result = $bdd->fetchall();
 	$bdd->closeCursor();
-	return json_encode($result);
+	echo json_encode($result);
 }
 
 // $user should be steamhex64
@@ -126,7 +126,7 @@ function get_user_info($user, $field){
 	$userData->execute(array('identifier' => $user));
 	$result = $userData->fetch();
 	$userData->closeCursor();
-	return json_encode($result[$field]);
+	echo json_encode($result[$field]);
 }
 
 function get_job($job){
@@ -135,7 +135,7 @@ function get_job($job){
 	$userData->execute(array('job_name' => $job));
 	$result = $userData->fetch();
 	$userData->closeCursor();
-	return json_encode(array(
+	echo json_encode(array(
 		'name' => $result['name'],
 		'label' => $result['label'],
 		'whitelisted' => $result['whitelisted']
@@ -148,7 +148,7 @@ function get_job_grade($job, $grade){
 	$userData->execute(array('job_name' => $job, 'grade' => $grade));
 	$result = $userData->fetch();
 	$userData->closeCursor();
-	return json_encode(array(
+	echo json_encode(array(
 		'job_name' => $result['job_name'],
 		'grade' => $result['grade'],
 		'name' => $result['name'],
