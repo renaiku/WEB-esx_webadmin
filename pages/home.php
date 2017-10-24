@@ -17,7 +17,7 @@
 		Here will be content
 
     <?php
-      include('backend/functions.php');
+      //include('backend/functions.php');
     ?>
 	</div>
 </section>

@@ -2,6 +2,8 @@
 ob_start();
 session_start();
 
+include_once('backend/functions.php');
+
 function logoutbutton() {
 	echo "<form action='' method='get'><button class='btn btn-default btn-flat' name='logout' type='submit'>Logout</button></form>"; //logout button
 }
@@ -13,8 +15,6 @@ function loginbutton($buttonstyle = "square") {
 	
 	echo $button;
 }
-
-
 
 if (isset($_GET['login'])){
 	require 'openid.php';
@@ -33,7 +33,6 @@ if (isset($_GET['login'])){
 				$ptn = "/^http:\/\/steamcommunity\.com\/openid\/id\/(7[0-9]{15,25}+)$/";
 				preg_match($ptn, $id, $matches);
 
-			    include_once('backend/get_user.php');
 			    $hexid = 'steam:'.bc_base_convert($matches[1], 10, 16 );
 				
 			    if(USE_WHITELIST) {
@@ -50,6 +49,11 @@ if (isset($_GET['login'])){
 			    }
 
       			$_SESSION['steamidhex'] = $hexid;
+
+      			$user = json_decode(get_user(), true);
+
+      			$_SESSION['group'] = $user['group'];
+      			$_SESSION['job'] = get_job_grade($user['job'], $user['job_grade']);
 
 				if (!headers_sent()) {
 					header('Location: '.$steamauth['loginpage']);

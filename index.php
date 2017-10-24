@@ -1,5 +1,6 @@
 <?php
 	require_once 'steamauth/steamauth.php';
+	include_once('backend/functions.php');
 
 	if(isset($_GET['p']) && !empty($_GET['p'])) {
 
@@ -16,7 +17,6 @@
 	}
 
 	if(isset($_SESSION['steamid'])) {
-		include_once('backend/get_user.php');
 
 		$user = json_decode(get_user(), true);
 
