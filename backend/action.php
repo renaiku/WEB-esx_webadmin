@@ -21,7 +21,7 @@
         $result = get_job_grade($_GET['job'], $_GET['grade']);
         break;
     case 'add_to_whitelist':
-        add_to_whitelist($_GET['firstname'], $_GET['lastname'], $_GET['identifier']);
+        add_to_whitelist(htmlspecialchars($_GET['firstname']), htmlspecialchars($_GET['lastname']), htmlspecialchars($_GET['identifier']));
         $result = NULL;
         break;
 	}
