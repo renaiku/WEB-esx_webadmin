@@ -1,4 +1,5 @@
 <?php
+    include_once('functions.php');
 	$result = "No function found";
 
 	switch ($_GET['return']) {
