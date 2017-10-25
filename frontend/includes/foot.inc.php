@@ -35,3 +35,5 @@
 <script src="frontend/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="frontend/dist/js/demo.js"></script>
+
+<script src="frontend/app.js"></script>
