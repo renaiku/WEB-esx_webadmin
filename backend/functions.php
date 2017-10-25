@@ -44,9 +44,6 @@ if (isset($_GET['return'])) {
 	include_once('config/config.php');
 }
 
-
-
-
 if(isset($_SESSION['steamid']) and DEBUG) {
 	echo '<br /><br />[USERS] '. count_users() . '<br />';
 	echo '[USER - money] '. get_user_info($_SESSION['steamidhex'], 'money') . '<br />';
@@ -167,11 +164,23 @@ function get_job_grade($job, $grade){
 function add_to_whitelist($firstname, $lastname, $identifier){
 	include('pdo.php');
 	$req = $db->prepare('INSERT INTO whitelist(firstname, lastname, identifier) VALUES(:firstname, :lastname, :identifier)');
-	$req->execute(array(
+	if ($req->execute(array(
 		'firstname' => $firstname,
 		'lastname' => $lastname,
 		'identifier' => $identifier
-	));
+	));) {
+		$message = $firstname.' '.$lastname.' has been successfully added to whitelist.';
+		echo json_encode(array(
+			'success' => true,
+			'message' => $message
+		));
+	} else {
+		$message = '[ERROR] '.$firstname.' '.$lastname.' has not been added to whitelist.';
+		echo json_encode(array(
+			'success' => false,
+			'message' => $message
+		));
+	}
 }
 
 ?>
