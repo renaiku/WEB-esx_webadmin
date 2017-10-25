@@ -36,7 +36,7 @@ if (isset($_GET['return'])) {
 
 	switch ($_POST['execute']) {
 	    case 'add_to_whitelist':
-	        add_to_whitelist(htmlspecialchars($_GET['firstname']), htmlspecialchars($_GET['lastname']), htmlspecialchars($_GET['identifier']));
+	        add_to_whitelist(htmlspecialchars($_POST['firstname']), htmlspecialchars($_POST['lastname']), htmlspecialchars($_POST['identifier']));
 	        break;
 	}
 
