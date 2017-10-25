@@ -91,7 +91,7 @@ function bc_base_convert($value,$quellformat,$zielformat)
 	return $vorzeichen.$result ;
 }
     
-function get_user() {
+function get_user($mode) {
 	include_once('steamauth/userInfo.php'); //To access the $steamprofile array
     include('pdo.php');
     if(USE_WHITELIST) {
@@ -102,7 +102,11 @@ function get_user() {
 	$u->execute(array('identifier' => $_SESSION['steamidhex']));
 	$result = $u->fetch();
 	$u->closeCursor();
-	echo json_encode($result);
+	if ($mode == 'return') {
+		return json_encode($result);
+	} else {
+		echo json_encode($result);
+	}
 }
 
 // returns the amount of players created in the users table
