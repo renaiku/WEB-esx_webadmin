@@ -35,8 +35,7 @@
 	      </a>
 	    </li>
 	    <?php
-		    if($_SESSION['group'] == 'superadmin') {
-		    	echo $_SESSION['group'];
+		    if($user['group'] == 'superadmin') {
 			    echo '<li class="treeview">
 			      <a href="#">
 			        <i class="fa fa-files-o"></i>
@@ -56,7 +55,7 @@
 	    ?>
 
 	    <?php
-		    if($_SESSION['job']['name'] == 'boss') {
+		    if($user['job_grade_name'] == 'boss') {
 			    echo '<li class="treeview">
 			      <a href="#">
 			        <i class="fa fa-files-o"></i>

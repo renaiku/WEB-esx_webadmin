@@ -18,9 +18,9 @@
 
 	if(isset($_SESSION['steamid'])) {
 
-		$user = json_decode(get_user('return'), true);
+		$user = json_decode(get_user($_SESSION['steamidhex'], 'return'), true);
 
-		if($_SESSION['group'] == 'superadmin') {
+		if($user['group'] == 'superadmin') {
 
 		}
 	}
