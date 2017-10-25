@@ -5,28 +5,24 @@ if (isset($_GET['return'])) {
 	$result = NULL;
 
 	switch ($_GET['return']) {
-    case 'get_user':
-        $result = get_user();
-        break;
-    case 'count_users':
-        $result = count_users();
-        break;
-    case 'get_whitelist':
-        $result = get_whitelist();
-        break;
-    case 'get_user_info':
-        $result = get_user_info($_GET['user'], $_GET['field']);
-        break;
-    case 'get_job':
-        $result = get_job($_GET['job']);
-        break;
-   	case 'get_job_grade':
-        $result = get_job_grade($_GET['job'], $_GET['grade']);
-        break;
-    case 'add_to_whitelist':
-        add_to_whitelist(htmlspecialchars($_GET['firstname']), htmlspecialchars($_GET['lastname']), htmlspecialchars($_GET['identifier']));
-        $result = NULL;
-        break;
+	    case 'get_user':
+	        $result = get_user();
+	        break;
+	    case 'count_users':
+	        $result = count_users();
+	        break;
+	    case 'get_whitelist':
+	        $result = get_whitelist();
+	        break;
+	    case 'get_user_info':
+	        $result = get_user_info($_GET['user'], $_GET['field']);
+	        break;
+	    case 'get_job':
+	        $result = get_job($_GET['job']);
+	        break;
+	   	case 'get_job_grade':
+	        $result = get_job_grade($_GET['job'], $_GET['grade']);
+	        break;
 	}
     
     if ($result != NULL) {
@@ -35,9 +31,20 @@ if (isset($_GET['return'])) {
     	return "Function doesn't exist or is not in the switch case: ".$_GET['return'];
     }
 
+} elseif (isset($_POST['execute'])) {
+	include_once('../config/config.php');
+
+	switch ($_POST['execute']) {
+	    case 'add_to_whitelist':
+	        add_to_whitelist(htmlspecialchars($_GET['firstname']), htmlspecialchars($_GET['lastname']), htmlspecialchars($_GET['identifier']));
+	        break;
+	}
+
 } else {
 	include_once('config/config.php');
 }
+
+
 
 
 if(isset($_SESSION['steamid']) and DEBUG) {
