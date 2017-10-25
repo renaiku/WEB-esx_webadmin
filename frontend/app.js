@@ -9,6 +9,10 @@ function getQueryVariable(variable)
        return(false);
 }
 
+
+
+/* Whitelist Functions */
+
 function updateWhitelist(){
 	$.get('/esx_webadmin/backend/functions.php?return=get_whitelist').done(function( data ){
 		data = JSON.parse(data);
@@ -26,34 +30,34 @@ function updateWhitelist(){
 
 }
 
+function whitelist(action, data){
+	if (action == "add"){
+		var execute = "add_to_whitelist";
+		data['execute'] = execute;
+		$.post('/esx_webadmin/backend/functions.php', data).done(function(resp){
+			console.log(resp)
+			updateWhitelist();
+		})
+	} else if (action == "remove"){
 
+	}
+}
 
 $(function(){
 	var page = getQueryVariable("p")
-
 	if (page == "whitelist"){
 		updateWhitelist();
 	}
-
-
-
-
-	$('#addtowhitelist').click(function(){
+	/* Submitting Form */
+	$('#addtowhitelist').submit(function( e ){
+		e.preventDefault();
 		var firstname = $('#firstname').val();
 		var lastname = $('#lastname').val();
 		var identifier = $('#identifier').val();
-
 		$('#firstname').val('');
 		$('#lastname').val('');
 		$('#identifier').val('');
-
-
-		$.post('/esx_webadmin/backend/functions.php?execute=add_to_whitelist', {'firstname': firstname, 'lastname': lastname, 'identifier': identifier}).done(function(resp){
-			updateWhitelist();
-		})
-
-
+		var data = {'firstname': firstname, 'lastname': lastname, 'identifier': identifier};
+		whitelist("add", data);
 	});
-
-
 });
