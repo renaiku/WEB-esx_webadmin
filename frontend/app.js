@@ -9,15 +9,10 @@ function getQueryVariable(variable)
        return(false);
 }
 
-$(function(){
-
-	var myVar = 'test';
-	console.log(myVar);
-
+function updateWhitelist(){
 	$.get('/esx_webadmin/backend/functions.php?return=get_whitelist').done(function( data ){
 		data = JSON.parse(data);
-		console.log(data)
-
+		$('#whitelisted table tbody').html('<tr><th>ID</th><th>Name</th><th>Last Connection</th><th>Actions</th></tr>');
 		for (var i = 0; i < data.length; i++) {
 			var add = "<tr> \
 			<td>"+data[i]['identifier']+"</td> \
@@ -25,18 +20,40 @@ $(function(){
 			<td>"+data[i]['last_connexion']+"</td> \
 			<td><a href=\"#\" class=\"label label-danger\">Remove</a></td> \
 			</tr>"
-
-
 			$('#whitelisted table tbody').append(add);
-
-			//data[i]
 		}
+	});
+
+}
+
+
+
+$(function(){
+	var page = getQueryVariable("p")
+
+	if (page == "whitelist"){
+		updateWhitelist();
+	}
 
 
 
 
+	$('#addtowhitelist').click(function(){
+		var firstname = $('#firstname').val();
+		var lastname = $('#lastname').val();
+		var identifier = $('#identifier').val();
+
+		$('#firstname').val('');
+		$('#lastname').val('');
+		$('#identifier').val('');
+
+
+		$.post('/esx_webadmin/backend/functions.php?execute=add_to_whitelist', {'firstname': firstname, 'lastname': lastname, 'identifier': identifier}).done(function(resp){
+			updateWhitelist();
+		})
 
 
 	});
+
 
 });

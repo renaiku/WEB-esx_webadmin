@@ -21,16 +21,16 @@
 			<div class="box-body">
 				<div class="row">
 				<div class="col-xs-3">
-                	<input type="text" class="form-control" placeholder="First Name">
+                	<input id="firstname" type="text" class="form-control" placeholder="First Name">
                 </div>
 				<div class="col-xs-3">
-                	<input type="text" class="form-control" placeholder="Last Name">
+                	<input id="lastname" type="text" class="form-control" placeholder="Last Name">
                 </div>
 				<div class="col-xs-5">
-                	<input type="text" class="form-control" placeholder="Steam ID">
+                	<input id="identifier" type="text" class="form-control" placeholder="Steam ID">
                 </div>
                 <div class="col-xs-1">
-                  <button type="button" class="btn btn-success" style="width: 100%;">Add</button>
+                  <button id="addtowhitelist" type="button" class="btn btn-success" style="width: 100%;">Add</button>
                 </div>
                 </div>
 			</div>
