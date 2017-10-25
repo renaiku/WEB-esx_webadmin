@@ -44,18 +44,6 @@ if (isset($_GET['return'])) {
 	include_once('config/config.php');
 }
 
-if(isset($_SESSION['steamid']) and DEBUG) {
-	echo '<br /><br />[USERS] '. count_users() . '<br />';
-	echo '[USER - money] '. get_user_info($_SESSION['steamidhex'], 'money') . '<br />';
-	echo '[USER - bank] '. get_user_info($_SESSION['steamidhex'], 'bank') . '<br />';
-	echo '[USER - phone_number] '. get_user_info($_SESSION['steamidhex'], 'phone_number') . '<br />';
-	$job = get_user_info($_SESSION['steamidhex'], 'job');
-	echo '[USER - job] ' . json_encode(get_job($job)) . '<br />';
-	$grade = get_user_info($_SESSION['steamidhex'], 'job_grade');
-	echo '[USER - job_grade] ' . json_encode(get_job_grade($job, $grade)) . '<br />';
-	echo '[USER - group] '. get_user_info($_SESSION['steamidhex'], 'group') . '<br />';
-}
-
 function bc_base_convert($value,$quellformat,$zielformat)
 {
 	$vorrat = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -106,7 +94,7 @@ function get_user($mode) {
 		return json_encode($result);
 	} else {
 		echo json_encode($result);
-	}
+	}	
 }
 
 // returns the amount of players created in the users table
@@ -168,11 +156,7 @@ function get_job_grade($job, $grade){
 function add_to_whitelist($firstname, $lastname, $identifier){
 	include('pdo.php');
 	$req = $db->prepare('INSERT INTO whitelist(firstname, lastname, identifier) VALUES(:firstname, :lastname, :identifier)');
-	if ($req->execute(array(
-		'firstname' => $firstname,
-		'lastname' => $lastname,
-		'identifier' => $identifier
-	));) {
+	if ($req->execute(array('firstname' => $firstname, 'lastname' => $lastname, 'identifier' => $identifier))) {
 		$message = $firstname.' '.$lastname.' has been successfully added to whitelist.';
 		echo json_encode(array(
 			'success' => true,
