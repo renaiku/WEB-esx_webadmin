@@ -61,3 +61,40 @@ $(function(){
 		whitelist("add", data);
 	});
 });
+
+
+/* HomePage */
+
+$(function(){
+
+	refreshModals();
+
+});
+
+
+function refreshModals(){
+	$.get('/esx_webadmin/backend/functions.php?return=get_modules').done(function( data ){
+			
+
+		data = JSON.parse(data);
+		console.log(data.length)
+		data = data["homepage"];
+		console.log(data)
+		$('#modules').html("");
+
+
+
+		for (var key in data) {
+			var add = '<div class="col-md-3 col-sm-6 col-xs-12"> \
+			<div class="info-box"> \
+			<span class="info-box-icon bg-'+ data[key]["color"] +'"><i class="fa '+data[key]["icon"]+'"></i></span> \
+			<div class="info-box-content"> \
+			<span class="info-box-text">'+ data[key]["label"] +'</span> \
+			<span class="info-box-number">'+data[key]["value"]+'</span> \
+			</div></div></div> \
+			'
+			$('#modules').append(add);
+
+		}
+	});
+}
