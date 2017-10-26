@@ -23,6 +23,9 @@ if (isset($_GET['return'])) {
 	   	case 'get_job_grade':
 	        $result = get_job_grade($_GET['job'], $_GET['grade']);
 	        break;
+	   	case 'get_modules':
+	        $result = get_modules();
+	        break;
 	}
     
     if ($result != NULL) {
@@ -42,6 +45,12 @@ if (isset($_GET['return'])) {
 
 } else {
 	include_once('config/config.php');
+}
+
+function get_modules() 
+{
+	include_once('../config/modules.php');
+	echo $modules;
 }
 
 function bc_base_convert($value,$quellformat,$zielformat)
