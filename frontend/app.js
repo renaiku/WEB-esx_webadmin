@@ -66,8 +66,10 @@ $(function(){
 /* HomePage */
 
 $(function(){
-
-	refreshModals();
+	if (getQueryVariable("p") == false){
+		refreshModals();
+	}
+	
 
 });
 
@@ -77,9 +79,7 @@ function refreshModals(){
 			
 
 		data = JSON.parse(data);
-		console.log(data.length)
 		data = data["homepage"];
-		console.log(data)
 		$('#modules').html("");
 
 
