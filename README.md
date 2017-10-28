@@ -3,4 +3,4 @@
 This is a work in progress.
 
 ## SCREENSHOT
-![screenshot](screenshot)
+![screenshot](https://imgur.com/8M1Ve5G)
