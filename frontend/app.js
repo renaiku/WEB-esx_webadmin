@@ -98,3 +98,20 @@ function refreshModals(){
 		}
 	});
 }
+
+
+/* Profile Page */
+
+$(function(){
+	if (getQueryVariable("p") == "profile"){
+		var steamid = ""
+		populateProfile();
+	}
+
+
+});
+
+
+function populateProfile(){
+
+}
